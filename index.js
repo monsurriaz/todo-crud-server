@@ -29,7 +29,7 @@ client.connect(err => {
 
 
   app.get('/showTodo', (req, res) => {
-    todoCollection.find({})
+    todoCollection.find({email: req.query.email})
     .toArray((err, documets) => {
         res.send(documets)
     })
@@ -45,11 +45,15 @@ client.connect(err => {
 
 
   app.patch('/update/:id', (req, res) => {
-    todoCollection.find({_id: ObjectId(req.params.id)},
+    console.log(req.body.name);
+    todoCollection.updateOne({_id: ObjectId(req.params.id)},
     {
-      $set: {name: req.body}
+      $set: {name: req.body.name}
     })
-    .then(result => console.log(result)
+    .then(result => {
+      console.log(result)
+      res.send(result)
+    }
     )
   })
 
