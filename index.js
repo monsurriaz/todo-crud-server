@@ -30,7 +30,7 @@ client.connect(err => {
   //email: req.query.email
   app.get('/showTodo', (req, res) => {
     console.log(req.query);
-    todoCollection.find({email: req.query.email})
+    todoCollection.find({})
     .toArray((err, documets) => {
         res.send(documets)
     })
