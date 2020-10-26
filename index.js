@@ -27,8 +27,9 @@ client.connect(err => {
       })
   });
 
-
+  //email: req.query.email
   app.get('/showTodo', (req, res) => {
+    console.log(req.query);
     todoCollection.find({email: req.query.email})
     .toArray((err, documets) => {
         res.send(documets)
